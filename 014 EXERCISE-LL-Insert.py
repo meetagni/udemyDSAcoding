@@ -53,58 +53,94 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         self.length += 1
+        return True
+
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.tail = None
+        return temp
+
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+        
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    ## WRITE INSERT METHOD HERE ##
+    #                            #
+    #                            #
+    #                            #
+    #                            #
+    ##############################
+  
 
 
 
-
-my_linked_list = LinkedList(2)
+my_linked_list = LinkedList(1)
 my_linked_list.append(3)
 
-print('Before prepend():')
-print('----------------')
-print('Head:', my_linked_list.head.value)
-print('Tail:', my_linked_list.tail.value)
-print('Length:', my_linked_list.length, '\n')
-print('Linked List:')
+
+print('LL before insert():')
 my_linked_list.print_list()
 
 
-my_linked_list.prepend(1)
+my_linked_list.insert(1,2)
+
+print('\nLL after insert(2) in middle:')
+my_linked_list.print_list()
 
 
-print('\n\nAfter prepend():')
-print('---------------')
-print('Head:', my_linked_list.head.value)
-print('Tail:', my_linked_list.tail.value)
-print('Length:', my_linked_list.length, '\n')
-print('Linked List:')
+my_linked_list.insert(0,0)
+
+print('\nLL after insert(0) at beginning:')
+my_linked_list.print_list()
+
+
+my_linked_list.insert(4,4)
+
+print('\nLL after insert(4) at end:')
 my_linked_list.print_list()
 
 
 
 """
     EXPECTED OUTPUT:
-    
-    Before prepend():
     ----------------
-    Head: 2
-    Tail: 3
-    Length: 2 
+    LL before insert():
+    1
+    3
 
-    Linked List:
+    LL after insert(2) in middle:
+    1
     2
     3
 
-
-    After prepend():
-    ---------------
-    Head: 1
-    Tail: 3
-    Length: 3 
-
-    Linked List:
+    LL after insert(0) at beginning:
+    0
     1
     2
-    3   
+    3
+
+    LL after insert(4) at end:
+    0
+    1
+    2
+    3
+    4
 
 """

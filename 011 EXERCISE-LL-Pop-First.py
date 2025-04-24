@@ -53,58 +53,45 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         self.length += 1
+        return True
+
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        elif self.length == 1:
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length = 0
+            temp.next = None
+            return temp
+        else:
+            temp = self.head
+            self.head = self.head.next
+            self.length -= 1
+            temp.next = None
+            return temp
 
 
 
 
 my_linked_list = LinkedList(2)
-my_linked_list.append(3)
-
-print('Before prepend():')
-print('----------------')
-print('Head:', my_linked_list.head.value)
-print('Tail:', my_linked_list.tail.value)
-print('Length:', my_linked_list.length, '\n')
-print('Linked List:')
-my_linked_list.print_list()
+my_linked_list.append(1)
 
 
-my_linked_list.prepend(1)
-
-
-print('\n\nAfter prepend():')
-print('---------------')
-print('Head:', my_linked_list.head.value)
-print('Tail:', my_linked_list.tail.value)
-print('Length:', my_linked_list.length, '\n')
-print('Linked List:')
-my_linked_list.print_list()
-
+# (2) Items - Returns 2 Node
+print(my_linked_list.pop_first().value)
+# (1) Item -  Returns 1 Node
+print(my_linked_list.pop_first().value)
+# (0) Items - Returns None
+print(my_linked_list.pop_first())
 
 
 """
     EXPECTED OUTPUT:
-    
-    Before prepend():
     ----------------
-    Head: 2
-    Tail: 3
-    Length: 2 
-
-    Linked List:
     2
-    3
-
-
-    After prepend():
-    ---------------
-    Head: 1
-    Tail: 3
-    Length: 3 
-
-    Linked List:
     1
-    2
-    3   
+    None
 
 """
