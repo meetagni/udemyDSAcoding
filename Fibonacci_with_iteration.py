@@ -11,7 +11,7 @@ def fib(n):
 
 start = time.perf_counter()
 n = 40
-print('With memoization, Fib of ', n, ' is: ', fib(n))
+print('With iteration, Fib of ', n, ' is: ', fib(n))
 end = time.perf_counter()
 print('Time taken: ', end - start)
 print('Function calls: ', counter)
